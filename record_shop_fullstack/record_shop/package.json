@@ -1,0 +1,35 @@
+{
+  "name": "record_shop",
+  "version": "1.0.0",
+  "description": "This file lists the changes that need to be made in each stage. It is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each task added.",
+  "main": "index.js",
+  "type": "module",
+  "nodemonConfig": {
+    "ignore": [
+      "database.json",
+      "logs.json",
+      "file.json"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-polat/record_shop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-polat/record_shop/issues"
+  },
+  "homepage": "https://github.com/s-polat/record_shop#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "lowdb": "^3.0.0"
+  }
+}
