@@ -1,15 +1,19 @@
-import { client } from '../index.js';
+import Flight from "../models/Flight.js"
+
 
 async function getFlights (req, res){
-    const collection = client.db("lufthansa").collection("flights");
-    const allFlights = await collection.find().toArray()
+    const allFlights = await Flight.find()
     res.json(allFlights)
 };
 
 async function createFlight(req, res){
-    const collection = client.db("lufthansa").collection("flights");
-    const result = await collection.insertOne(req.body)
-    res.send(`data received ${result}`)
+    try {
+        await Flight.create(req.body)
+    } catch (error) {
+        console.error(error)
+        .send(error)
+    }
+    res.send('created')
 
 }
 

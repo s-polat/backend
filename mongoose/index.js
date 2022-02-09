@@ -1,5 +1,5 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose"
 import 'dotenv/config'
 import flightRouter from './routes/flights.js'
 
@@ -13,12 +13,11 @@ app.use(express.json())
 
 app.use('/', flightRouter)
 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-    console.log('Connected to DB');
-   console.log(err)
-    
+// Mit Dartenbank verbinden
+mongoose.connect(uri, err => {
+  console.log('Connected to DB')
 });
+
 
 
 
@@ -27,4 +26,3 @@ app.listen(3000, () => {
 })
 
 
-export {client}
