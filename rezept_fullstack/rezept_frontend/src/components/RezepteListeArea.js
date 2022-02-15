@@ -11,12 +11,12 @@ function RezepteListeArea() {
 
     if(value==="All"){      
 
-     await fetch("http://localhost:3000")
+     await fetch("http://localhost:3001")
       .then((res) => res.json())
       .then((res) => setFilteredCategory(res));
 
     }else{
-     await fetch(`http://localhost:3000/category/${value}`)
+     await fetch(`http://localhost:3001/category/${value}`)
         .then((res) => res.json())
         .then((res) => setFilteredCategory(res));
 
