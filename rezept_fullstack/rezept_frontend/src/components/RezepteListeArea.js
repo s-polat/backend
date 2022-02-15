@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import RezepteCards from "./RezepteCards";
 
 function RezepteListeArea() {
-  const [filteredCategory,setFilteredCategory] = useState([]);
+  const [filteredCategory, setFilteredCategory] = useState([]);
 
 
 
