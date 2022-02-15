@@ -1,18 +1,36 @@
 import React from 'react'
 import './Rezept.css';
 
+
 function Rezept() {
 
-  function addReceipt(e) {
+  async function addReceipt(e) {
     e.preventDefault();
+    const rawResponse = await fetch('http://localhost:3000/add', {
+      method: 'POST',
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: e.target.title.value,
+        image: e.target.foto.value,
+        description: e.target.description.value,
+        ingredients: {},
+        category: '',
+        preparationTime: '30 min.'})
+      });
+      const content = await rawResponse.json();
+      
+      console.log(content);
   }
   return (
     <main>
       <h1>Füge dein Lieblingsrezept hinzu.</h1>
-      <form>
+      <form onSubmit={addReceipt}> 
         <div class="form-control">
           <label htmlFor="name">Rezeptname</label>
-          <input type="text" id="name" name="name" required />
+          <input type="text" id="name" name="title" required />
         </div>
         <div class="form-control">
           <label htmlFor="address">Zutaten</label>
@@ -62,7 +80,7 @@ function Rezept() {
           <input type="text" id="foto" name="foto" />
         </div>
         <h5>Empfohlen von: </h5>
-        <button onclick={addReceipt}>Rezept hinzufügen</button>
+        <button>Rezept hinzufügen</button>
       </form>
     </main>
   );

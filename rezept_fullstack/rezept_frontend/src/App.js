@@ -1,7 +1,7 @@
 import './App.css';
 import ReceptDetails from './components/ReceptDetails.js';
 import Startseite from './components/Startseite';
-import Rezept from './components/Rezept';
+import Rezept from './components/Rezept.js';
 import Header from './components/Header'
 import { Routes, Route } from 'react-router-dom'
 
