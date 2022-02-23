@@ -1,40 +1,48 @@
+import Record from '../models/record.model.js';
 
-import db from '../database.js'
+export const getRecords = async (req, res) => {
+    const records = await Record.find();
+    res.json(records);
+};
 
+export const getRecordById = async (req, res) => {
+    const { id } = req.params;
 
-// Controller Methods
-export async function addRecord(req, res){
-    const data = req.body
+    const record = await Record.findById(id);
+
+    if (!record) {
+        return res.status(400).send('Nicht gefunden, mit id: ' + id);
+    }
+    
+    res.json(record);
+};
+
+export const addRecord = async (req, res) => {
+    const data = req.body;
     // Testen ob data alle infos enthält: title, artist, year, cover, price
     if (!data.title || !data.artist || !data.year || !data.price) {
         return res.status(400).send('Falsche Daten');
     }
-    // Das ist wichtig zu verstehen. gelen veriyi bizim istedigimiz formata göre ayarlayip database e kaydediyoruz
-    const record = {
 
+    const record = new Record({
         title: data.title,
         artist: data.artist,
         year: data.year,
-        price: data.price,
-        cover: data.cover,
-    };
+        price: data.price, // <- parseInt ?
+        cover: '',
+    });
 
-    db.data.records.push(record);
-    //
-    await db.write(); // async
+    await record.save();
 
     res.send(record);
-
 }
 
-export function getAllRecords(req,res) {
-
-    res.json(db.data)
-
-    // Alle records zurück geben.
+export const deleteRecord = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const record = await Record.deleteOne({ _id: id });
+        res.json(record);
+    } catch (err) {
+        return res.status(400).send('Nicht gefunden mit id: '+id+' - '+err);
+    }
 }
-
-
-
-
-
