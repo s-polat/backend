@@ -1,9 +1,19 @@
-import { Router } from "express";
+import { Router } from 'express';
+import { getUsers, addUser, getUserById, deleteUser } from '../controller/users.controller.js';
 
-const usersRouter= new Router();
+const router = new Router();
 
-usersRouter.get('/users', (req, res)=>{
-    res.send('This is GET /users')
-})
+// CRUD ?
 
-export default usersRouter;
+router.route('/users')
+    .get(getUsers) // Read
+    .post(addUser); // Create
+
+    // 1. Lesbarkeit / Konsistenz
+    // 2. ID nur innerhalb einer Collectoin Einzigartig
+router.route('/users/:id')
+    .get(getUserById) // Read
+    .delete(deleteUser); // Delete
+    //.update(updateUser); // Update
+
+export default router;
