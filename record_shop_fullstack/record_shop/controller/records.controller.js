@@ -1,4 +1,4 @@
-import Record from '../models/record.model.js';
+import Record from '../models/records.model.js';
 
 export const getRecords = async (req, res) => {
     const records = await Record.find();

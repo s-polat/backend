@@ -1,27 +1,32 @@
+import 'dotenv/config'
 import express from "express"
-import { getAllRecords } from "./controller/records.controller.js";
 import recordsRoutes from './routes/records.routes.js';
 import usersRouter from './routes/users.routes.js';
+import ordersRoutes from './routes/orders.routes.js'
 import cors from 'cors'
+import { connectMongoose } from "./database-mongoose.js";
 
  /* baslangicta npm init , npm install express lowdb, terminale yazilarak gerekli paketler yüklenir
  
  sonra import kullanabilmek icin package.json a "type": "module", yapistirmamiz lazim*/
 
 
- const PORT = process.env.PORT || 4000;
  const app = express();
+ const PORT = process.env.PORT || 4000;
+ const uri =process.env.MONGODB;
 
+connectMongoose(uri);
 app.use(cors())
 app.use(express.json()); //bu komut olmadan posttan gelen veriyi dataya alamayiz
 
-app.use('/api', getAllRecords)
 app.use(recordsRoutes);
 app.use(usersRouter);
+app.use(ordersRoutes);
 
 
 
 // Start server
 app.listen(PORT, () => {
     console.log(`server is running at http://localhost:${PORT}`);
+    console.log('Server läuft auf Port: ' + PORT);
 });

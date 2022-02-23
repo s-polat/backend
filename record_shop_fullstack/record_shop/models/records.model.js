@@ -1,12 +1,14 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const orderSchema = new Schema({
-  recordId: mongoose.Types.ObjectId,
-  userId:  mongoose.Types.ObjectId,
-  quantity: Number,
+const recordSchema = new Schema({
+  title:  String,
+  artist: String,
+  year:   String,
+  price: Number,
+  cover: String,
 });
 
-const Order = mongoose.model('Order', orderSchema);
+const Record = mongoose.model('Record', recordSchema);
 
-export default Order;
+export default Record;

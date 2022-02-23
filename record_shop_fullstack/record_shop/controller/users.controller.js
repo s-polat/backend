@@ -1,5 +1,5 @@
 import db from '../database.js';
-import User from '../models/user.model.js'
+import User from '../models/users.model.js'
 
 export const getUsers = async (req, res) => {
     const users = await User.find();
