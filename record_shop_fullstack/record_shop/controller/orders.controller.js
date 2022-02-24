@@ -31,6 +31,14 @@ export const addOrder = async (req, res) => {
 
     await order.save();
 
+        /* const order={
+        recordId: data.recordId,
+        userId: data.userId,
+        quantity: data.quantity,}       böyle de mongoose a veri gönderilebilirdi
+
+    await Order.create(order) */
+
+
     res.send(order);
 }
 

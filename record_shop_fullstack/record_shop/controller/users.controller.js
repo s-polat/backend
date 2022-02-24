@@ -1,5 +1,6 @@
 import db from '../database.js';
 import User from '../models/users.model.js'
+import { faker } from '@faker-js/faker';
 
 export const getUsers = async (req, res) => {
     const users = await User.find();
@@ -32,6 +33,17 @@ export const addUser = async (req, res) => {
     });
 
     await user.save();
+
+    //backende 100 tane fake kullanici ekledik. 
+    for (let i = 0; i < 100; i++) {
+        const randomUser = new User({
+            firstName:  faker.name.firstName(),
+            lastName: faker.name.lastName(),
+            email:   faker.internet.email(),
+            password: faker.datatype.string(),
+        });
+        randomUser.save();
+    }
 
     res.send(user);
 }
