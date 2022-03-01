@@ -1,9 +1,9 @@
 var express = require('express');
-const getAllRezept = require('../controllers/getAllRezept.controller');
+const {getAllRecipes} = require('../controllers/recipe.controller');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', getAllRezept);
+router.get('/', getAllRecipes);
 
 
 
