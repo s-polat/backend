@@ -15,7 +15,7 @@ router.route('/recipe/:id')
     .delete(deleteRecipe)
     .put(recipeUpdate)
 
-router.route('/recipe/:category')
+router.route('/recipe/category/:category')
     .get(getRecipeByCategory)
 
 

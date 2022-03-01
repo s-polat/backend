@@ -25,7 +25,7 @@ async function createUser(req, res) {
   //asagidaki kod ile passwordu sifreledik npm i bcrypt yapmayi unutma...
   password = await bcrypt.hash(password, 10);
   try {
-    await User.create({ email, password, username, firstName, lastName, city });
+    await userModel.create({ email, password, username, firstName, lastName, city });
 
     res.status(201).send('created');
   } catch (error) {
@@ -55,7 +55,7 @@ async function userLogin(req, res) {
   
   async function getUserById(req, res) {
     const { id } = req.params;
-    const user = await userModel.findById(id).populate('recipes');
+    const user = await userModel.findById(id).populate('Recipes');
     try {
       if (!user) {
         res.status(404).send('User not found');
