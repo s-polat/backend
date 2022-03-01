@@ -1,18 +1,17 @@
 const mongoose= require('mongoose');
 const cors= require('cors')
-const reciperouter = require('./routes/recipepost.js');
 
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var recipesRoutes = require("./routes/recipes.routes.js");
-var rezeptByCategory = require("./routes/category.js")
 require("dotenv").config();
 
 
 const uri = process.env.URI_DB
     
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/index.js');
+var RecipesRouter = require('./routes/recipes.router.js')
+var UsersRouter = require('./routes/users.router.js')
 
 var app = express();
 
@@ -39,9 +38,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', indexRouter);
-app.use("/", recipesRoutes);
-app.use("/",rezeptByCategory);
-app.use(reciperouter);
+app.use(indexRouter);
+app.use(RecipesRouter);
+app.use(UsersRouter);
 
 module.exports = app

@@ -6,10 +6,4 @@ var router = express.Router();
 router.get('/', getAllRecipes);
 
 
-
-
-
-
-
-
 module.exports = router;
