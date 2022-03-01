@@ -40,6 +40,22 @@ async function createRecipe  (req, res)  {
 
 }
 
+async function recipeUpdate (req, res) {
+    try {
+        const id= req.params.id;
+        console.log(req.body);
+        const recipe = await recipeModel.findByIdAndUpdate(id , req.body, {
+            new: true,
+            runValidators: true,
+            context: 'query'
+            } );
+        res.json(recipe);
+        
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 async function deleteRecipe (req, res)  {
     const { id } = req.params;
     try {
@@ -50,4 +66,4 @@ async function deleteRecipe (req, res)  {
     }
 }
 
-module.exports = {getAllRecipes, getRecipeById, getRecipeByCategory, deleteRecipe, createRecipe, besteFunfRezepte }
+module.exports = {getAllRecipes, recipeUpdate, getRecipeById, getRecipeByCategory, deleteRecipe, createRecipe, besteFunfRezepte }
