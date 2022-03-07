@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
+import Login from "./components/pages/Login";
 import RecordAdd from "./components/pages/RecordAdd";
 import Records from "./components/pages/Records";
 import Register from "./components/pages/Register";
@@ -37,6 +38,7 @@ console.log(records);
 
           <Route path="/addRecord" element={<RecordAdd setRecords={setRecords} />} />
           <Route path="/register" element={<Register setRecords={setRecords} />} />
+          <Route path="/login" element={<Login setRecords={setRecords} />} />
         </Routes>
       </BrowserRouter>
     </div>
