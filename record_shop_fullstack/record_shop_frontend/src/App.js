@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import RecordAdd from "./components/pages/RecordAdd";
 import Records from "./components/pages/Records";
+import Register from "./components/pages/Register";
 
 function App() {
   const [records, setRecords] = useState([]);
@@ -35,6 +36,7 @@ console.log(records);
           <Route path="/records" element={<Records records={records} />} />
 
           <Route path="/addRecord" element={<RecordAdd setRecords={setRecords} />} />
+          <Route path="/register" element={<Register setRecords={setRecords} />} />
         </Routes>
       </BrowserRouter>
     </div>

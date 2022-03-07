@@ -11,6 +11,9 @@ export default function Navigation() {
            <Link to='/addRecord'>
            <h4  className=' mx-3'> Add a Record</h4>
            </Link>
+           <Link to='/register'>
+           <h4  className=' mx-3'>Register</h4>
+           </Link>
 
 
        </div>
