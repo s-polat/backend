@@ -3,7 +3,7 @@ import Navigation from "../Navigation";
 
 function Records({ records }) {
   return (
-    <div>
+    <div style={{ backgroundColor: "#bfbfc2" }}>
       <Navigation />
       <h1 className="text-center">All of Record</h1>
       <div className="d-flex justify-content-around align-items-center flex-wrap">

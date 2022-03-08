@@ -1,7 +1,18 @@
 import React from "react";
+import { useState } from "react";
 import Navigation from "../Navigation";
 
 export default function Login() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+  
+  };
+
   return (
     <div>
       <Navigation />
@@ -25,6 +36,8 @@ export default function Login() {
                               type="email"
                               id="form3Example3c"
                               className="form-control"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
                             />
                             <label className="form-label" for="form3Example3c">
                               Your Email
@@ -39,6 +52,8 @@ export default function Login() {
                               type="password"
                               id="form3Example4c"
                               className="form-control"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
                             />
                             <label className="form-label" for="form3Example4c">
                               Password
@@ -50,6 +65,7 @@ export default function Login() {
                           <button
                             type="button"
                             className="btn btn-primary btn-lg"
+                            onClick={submitHandler}
                           >
                             Login
                           </button>
