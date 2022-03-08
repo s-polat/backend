@@ -5,7 +5,7 @@ import Navigation from "../Navigation";
 function RecordAdd({setRecords}) {
 
   const BACKEND_URL_POST_HEROKU= process.env.REACT_APP_BACKEND_URL_POST_HEROKU
-  const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_POST_LOCAL
+  const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_POST_LOCAL + '/records'
 
   const [addRecord, setAddRecord] = useState({
     title: "",

@@ -9,12 +9,25 @@ export default function Register() {
   const [passwordRepeat, setPasswordRepeat] = useState("");
 
 
+
+  const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_POST_LOCAL 
+  const USER_PATH = BACKEND_URL_POST_LOCAL+'/users';
+
   const submitHandler = (e) => {
     e.preventDefault();
     if(password!==passwordRepeat){
       return alert('password is not same')
     }
-    
+
+    fetch(USER_PATH, {
+      method: "POST",
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({userName, email, password}),
+    })
+
   };
 
   return (
