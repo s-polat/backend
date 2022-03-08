@@ -21,13 +21,17 @@ export const getUserById = async (req, res) => {
 export const addUser = async (req, res) => {
     const data = req.body;
     // Testen ob data alle infos enthält: title, artist, year, cover, price
-    if (!data.firstName || !data.lastName || !data.email || !data.password) {
+    if (!data.userName || !data.email || !data.password) {
         return res.status(400).send('Falsche Daten');
+    }
+
+    const existingUser = await User.findOne({email:data.email});
+    if (existingUser){
+        return res.status(400).send('Email already in use ')
     }
     
     const user = new User({
-        firstName: data.firstName,
-        lastName: data.lastName,
+        userName: data.userName,
         email: data.email,
         password: data.password,
     });
@@ -37,8 +41,7 @@ export const addUser = async (req, res) => {
     //backende 100 tane fake kullanici ekledik. 
     for (let i = 0; i < 100; i++) {
         const randomUser = new User({
-            firstName:  faker.name.firstName(),
-            lastName: faker.name.lastName(),
+            userName:  faker.name.firstName(),
             email:   faker.internet.email(),
             password: faker.datatype.string(),
         });
@@ -46,6 +49,28 @@ export const addUser = async (req, res) => {
     }
 
     res.send(user);
+}
+
+
+export const loginUser =async (req, res) => {
+
+    const data= req.body;
+    if (!data.email || !data.password) {
+        return res.status(400).send('Email or password empty');
+    }
+
+    const user = await User.findOne({email:data.email});
+    if(user){
+        const isValid = data.password===user.password;
+        return res.json({
+            message: 'success',
+            data:{
+                user: user,
+            }
+        })
+    }else{
+        return res.status(400).send('Account not found')
+    } 
 }
 
 export const deleteUser = async (req, res) => {
