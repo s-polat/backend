@@ -1,6 +1,7 @@
 import db from '../database.js';
 import User from '../models/users.model.js'
 import { faker } from '@faker-js/faker';
+import bcrypt from 'bcrypt'
 
 export const getUsers = async (req, res) => {
     const users = await User.find();
@@ -29,11 +30,13 @@ export const addUser = async (req, res) => {
     if (existingUser){
         return res.status(400).send('Email already in use ')
     }
+
+    const hashedPassword = await bcrypt.hash(data.password, 5) // <-- Password wurde verschlüsselt mithilfe der bcrypt
     
     const user = new User({
         userName: data.userName,
         email: data.email,
-        password: data.password,
+        password: hashedPassword,
     });
 
     await user.save();
@@ -61,13 +64,21 @@ export const loginUser =async (req, res) => {
 
     const user = await User.findOne({email:data.email});
     if(user){
-        const isValid = data.password===user.password;
-        return res.json({
-            message: 'success',
-            data:{
-                user: user,
-            }
-        })
+        const isValid =await bcrypt.compare(data.password, user.password);
+
+        if(isValid){
+
+            return res.json({
+                message: 'success',
+                data:{
+                    user: user,
+                }
+            })
+        }else{
+            return res.status('402').json({
+                message: 'Wrong Password'
+            })
+        }
     }else{
         return res.status(400).send('Account not found')
     } 
