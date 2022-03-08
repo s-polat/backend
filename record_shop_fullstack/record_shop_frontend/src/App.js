@@ -28,8 +28,8 @@ console.log(records);
   console.log(records);
 
   return (
-    <div>
-      <h1 className="text-center">A Record Page</h1>
+    <div className="vh-100"  style={{ backgroundColor: "#bfbfc2" }}>
+      <h1 className="text-center" style={{ color: "#5c5c5f" }}>A Record Page</h1>
 
       <BrowserRouter>
         <Routes>
