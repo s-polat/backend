@@ -42,14 +42,14 @@ export const addUser = async (req, res) => {
     await user.save();
 
     //backende 100 tane fake kullanici ekledik. 
-    for (let i = 0; i < 100; i++) {
-        const randomUser = new User({
-            userName:  faker.name.firstName(),
-            email:   faker.internet.email(),
-            password: faker.datatype.string(),
-        });
-        randomUser.save();
-    }
+    // for (let i = 0; i < 100; i++) {
+    //     const randomUser = new User({
+    //         userName:  faker.name.firstName(),
+    //         email:   faker.internet.email(),
+    //         password: faker.datatype.string(),
+    //     });
+    //     randomUser.save();
+    // }
 
     res.send(user);
 }
