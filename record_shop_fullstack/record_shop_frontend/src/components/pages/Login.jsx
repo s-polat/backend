@@ -4,12 +4,24 @@ import Navigation from "../Navigation";
 
 export default function Login() {
 
+  const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_POST_LOCAL 
+  const USER_PATH = BACKEND_URL_POST_LOCAL+'/users/login';
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(email, password);
+
+    fetch(USER_PATH, {
+      method: "POST",
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email, password}),
+    })
   
   };
 
@@ -28,7 +40,7 @@ export default function Login() {
                         Login
                       </p>
 
-                      <form className="mx-1 mx-md-4">
+                      <form className="mx-1 mx-md-4" >
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
@@ -39,7 +51,7 @@ export default function Login() {
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                             />
-                            <label className="form-label" for="form3Example3c">
+                            <label className="form-label" htmlFor="form3Example3c">
                               Your Email
                             </label>
                           </div>
@@ -55,7 +67,7 @@ export default function Login() {
                               value={password}
                               onChange={(e) => setPassword(e.target.value)}
                             />
-                            <label className="form-label" for="form3Example4c">
+                            <label className="form-label" htmlFor="form3Example4c">
                               Password
                             </label>
                           </div>

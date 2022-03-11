@@ -11,7 +11,7 @@ export default function Register() {
 
 
   const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_POST_LOCAL 
-  const USER_PATH = BACKEND_URL_POST_LOCAL+'/users';
+  const USER_PATH = BACKEND_URL_POST_LOCAL+'/users/register';
 
   const submitHandler = (e) => {
     e.preventDefault();
