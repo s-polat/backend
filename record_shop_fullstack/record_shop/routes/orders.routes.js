@@ -3,11 +3,11 @@ import { getOrders, addOrder, getOrderById, deleteOrder } from '../controller/or
 
 const router = new Router();
 
-router.route('/orders')
+router.route('/')
     .get(getOrders)
     .post(addOrder);
 
-router.route('/orders/:id')
+router.route('/:id')
     .get(getOrderById)
     .delete(deleteOrder);
 

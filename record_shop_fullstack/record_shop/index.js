@@ -19,9 +19,9 @@ connectMongoose(uri);
 app.use(cors())
 app.use(express.json()); //bu komut olmadan posttan gelen veriyi dataya alamayiz
 
-app.use(recordsRoutes);
-app.use(usersRouter);
-app.use(ordersRoutes);
+app.use('/records', recordsRoutes);
+app.use('/users', usersRouter);
+app.use('/orders' ,ordersRoutes);
 
 
 

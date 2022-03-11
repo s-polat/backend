@@ -3,11 +3,11 @@ import { getRecords, addRecord, getRecordById, deleteRecord } from '../controlle
 
 const router = new Router();
 
-router.route('/records')
+router.route('/')
     .get(getRecords)
     .post(addRecord);
 
-router.route('/records/:id')
+router.route('/:id')
     .get(getRecordById)
     .delete(deleteRecord);
 
