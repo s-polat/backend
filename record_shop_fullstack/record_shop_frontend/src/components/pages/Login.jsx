@@ -1,20 +1,23 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "../Navigation";
 
 export default function Login() {
 
   const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_POST_LOCAL 
   const USER_PATH = BACKEND_URL_POST_LOCAL+'/users/login';
+  
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // ---> useNavigate hook unu böyle kullaniyoruz
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     console.log(email, password);
 
-    fetch(USER_PATH, {
+    const result = await fetch(USER_PATH, {
       method: "POST",
       headers: {
         Accept: 'application/json',
@@ -22,6 +25,14 @@ export default function Login() {
       },
       body: JSON.stringify({email, password}),
     })
+
+    const data = await result.json()
+
+    if (data.message==='success'){
+
+      navigate('/records')
+    }
+
   
   };
 
