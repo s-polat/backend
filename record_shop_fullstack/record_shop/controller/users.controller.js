@@ -71,7 +71,7 @@ export const loginUser =async (req, res) => {
             return res.json({
                 message: 'success',
                 data:{
-                    user: user,
+                    user: user.userName,
                 }
             })
         }else{
