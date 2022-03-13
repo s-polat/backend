@@ -4,6 +4,8 @@ import { faker } from '@faker-js/faker';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
+const SECRET_JWT_KEY =process.env.SECRET_JWT_KEY
+
 export const getUsers = async (req, res) => {
     const users = await User.find();
     res.json(users);
@@ -68,11 +70,12 @@ export const loginUser =async (req, res) => {
         const isValid =await bcrypt.compare(data.password, user.password);
 
         if(isValid){
-
+            const token = jwt.sign({email:user.email}, SECRET_JWT_KEY )
             return res.json({
                 message: 'success',
                 data:{
                     user: user.userName,
+                    token: token
                 }
             })
         }else{
