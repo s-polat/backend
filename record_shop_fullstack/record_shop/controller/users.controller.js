@@ -2,6 +2,7 @@ import db from '../database.js';
 import User from '../models/users.model.js'
 import { faker } from '@faker-js/faker';
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export const getUsers = async (req, res) => {
     const users = await User.find();
