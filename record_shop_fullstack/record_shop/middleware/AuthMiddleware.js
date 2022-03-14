@@ -11,7 +11,7 @@ export const auth = () => {
 
         const authHeader = req.headers.authorization;
         const token = authHeader && authHeader.split(' ')[1]; 
-
+        console.log(token);
         if(!token) {
             
             return res.status(402).send({
@@ -23,7 +23,7 @@ export const auth = () => {
         try{
 
             const content = jwt.verify(token, SECRET_JWT_KEY)
-
+            console.log(content);
             req.tokenContent = content 
 
 
