@@ -11,19 +11,21 @@ export const auth = () => {
 
         const authHeader = req.headers.authorization;
         const token = authHeader && authHeader.split(' ')[1]; 
-        console.log(token);
+        
         if(!token) {
             
-            return res.status(402).send({
-                message:'no access'
-            });
+            // return res.status(402).send({
+            //     message:'no access'
+            // });
+
+            return next();
 
         }
 
         try{
 
             const content = jwt.verify(token, SECRET_JWT_KEY)
-            console.log(content);
+
             req.tokenContent = content 
 
 
@@ -31,9 +33,7 @@ export const auth = () => {
 
         } catch (e){
 
-            res.status(401).send({
-                message:'no access'
-            })
+            next();
 
         }
 
