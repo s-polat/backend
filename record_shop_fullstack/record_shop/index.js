@@ -5,7 +5,7 @@ import usersRouter from './routes/users.routes.js';
 import ordersRoutes from './routes/orders.routes.js'
 import cors from 'cors'
 import { connectMongoose } from "./database-mongoose.js";
-
+import { auth } from './middleware/AuthMiddleware.js';
  /* baslangicta npm init , npm install express lowdb, terminale yazilarak gerekli paketler yüklenir
  
  sonra import kullanabilmek icin package.json a "type": "module", yapistirmamiz lazim*/
@@ -16,8 +16,11 @@ import { connectMongoose } from "./database-mongoose.js";
  const uri =process.env.MONGODB;
 
 connectMongoose(uri);
+
+
 app.use(cors())
 app.use(express.json()); //bu komut olmadan posttan gelen veriyi dataya alamayiz
+app.use(auth())
 
 app.use('/records', recordsRoutes);
 app.use('/users', usersRouter);
