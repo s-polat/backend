@@ -29,7 +29,7 @@ export const addRecord = async (req, res) => {
         artist: data.artist,
         year: data.year,
         price: data.price, // <- parseInt ?
-        cover: '',
+        cover: data.cover,
     });
 
     await record.save();
