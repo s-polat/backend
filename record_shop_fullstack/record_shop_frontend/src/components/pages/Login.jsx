@@ -5,7 +5,7 @@ import Navigation from "../Navigation";
 
 export default function Login() {
 
-  const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_POST_LOCAL 
+  const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_LOCAL 
   const USER_PATH = BACKEND_URL_POST_LOCAL+'/users/login';
   
 

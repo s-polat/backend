@@ -4,8 +4,8 @@ import Navigation from "../Navigation";
 
 function RecordAdd({setRecords}) {
 
-  const BACKEND_URL_POST_HEROKU= process.env.REACT_APP_BACKEND_URL_POST_HEROKU
-  const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_POST_LOCAL + '/records'
+  // const BACKEND_URL_POST_HEROKU= process.env.REACT_APP_BACKEND_URL_POST_HEROKU
+  const BACKEND_URL_POST_LOCAL= process.env.REACT_APP_BACKEND_URL_LOCAL + '/records'
 
   const [addRecord, setAddRecord] = useState({
     title: "",
@@ -15,24 +15,23 @@ function RecordAdd({setRecords}) {
     price: 0,
   });
 
- 
 
   function submitHandler(e){
     e.preventDefault();
-    fetch(BACKEND_URL_POST_HEROKU, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(addRecord),
-    })
+    // fetch(BACKEND_URL_POST_HEROKU, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(addRecord),
+    // })
 
-    .then(res => res.json())
-    .then(data=> {
-      setRecords(prevState => [...prevState, data]) //prestate aslinda bizim eski records statemiz
-      alert(`${data.title} wurde nach Datenbank gespeichert`)
+    // .then(res => res.json())
+    // .then(data=> {
+    //   setRecords(prevState => [...prevState, data]) //prestate aslinda bizim eski records statemiz
+    //   alert(`${data.title} wurde nach Datenbank gespeichert`)
 
-    });
+    // });
     
     fetch(BACKEND_URL_POST_LOCAL, {
       method: "POST",
@@ -41,6 +40,12 @@ function RecordAdd({setRecords}) {
       },
       body: JSON.stringify(addRecord),
     })
+    .then(res => res.json())
+    .then(data=> {
+      setRecords(prevState => [...prevState, data]) //prestate aslinda bizim eski records statemiz
+      alert(`${data.title} wurde nach Datenbank gespeichert`)
+
+    });
      
    
     }
