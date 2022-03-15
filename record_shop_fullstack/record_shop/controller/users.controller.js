@@ -70,13 +70,16 @@ export const loginUser =async (req, res) => {
         const isValid =await bcrypt.compare(data.password, user.password);
 
         if(isValid){
-            const token = jwt.sign({email:user.email}, SECRET_JWT_KEY )
+
+            const payloadJWT = { email: user.email, id: user.id };
+            const token = jwt.sign(payloadJWT, SECRET_JWT_KEY )
+
+            user.token = token;
+            await user.save();
             return res.json({
                 message: 'success',
-                data:{
-                    userName: user.userName,
-                    token: token
-                }
+                token: token
+                
             })
         }else{
             return res.status('402').json({

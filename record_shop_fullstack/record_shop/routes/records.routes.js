@@ -3,7 +3,7 @@ import { getRecords, addRecord, getRecordById, deleteRecord } from '../controlle
 import { permission } from '../middleware/PermissionMiddleware.js';
 
 const router = new Router();
-// router.use(permission())
+router.use(permission())
 
 router.route('/')
     .get(getRecords)
