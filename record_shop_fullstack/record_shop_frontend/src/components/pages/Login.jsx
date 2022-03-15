@@ -30,6 +30,10 @@ export default function Login() {
 
     if (data.message==='success'){
 
+      const token = data.token
+
+      localStorage.token = token
+
       navigate('/records')
     }
 

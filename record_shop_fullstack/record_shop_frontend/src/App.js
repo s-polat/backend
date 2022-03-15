@@ -19,6 +19,7 @@ function App() {
     const data = await fetch(RECORDS_PATH, {
       headers: {
         Accept: "application/json",
+        Authorization: `Bearer ${localStorage.token}`,
       },
     });
     const result = await data.json();
@@ -27,7 +28,7 @@ function App() {
   }
 
   useEffect(() => {
-    getData();
+    getData()
   }, []);
 
   console.log(records);
